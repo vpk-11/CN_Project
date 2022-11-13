@@ -1,0 +1,110 @@
+n -t * -s 0  -x 100 -y 500 -Z 0 -z 30  -v circle -c black
+n -t * -s 1  -x 100 -y 250 -Z 0 -z 30  -v circle -c black
+n -t * -s 2  -x 180 -y 500 -Z 0 -z 30  -v circle -c black
+n -t * -s 3  -x 180 -y 250 -Z 0 -z 30  -v circle -c black
+n -t * -s 4  -x 260 -y 500 -Z 0 -z 30  -v circle -c black
+n -t * -s 5  -x 260 -y 250 -Z 0 -z 30  -v circle -c black
+n -t * -s 6  -x 340 -y 500 -Z 0 -z 30  -v circle -c black
+n -t * -s 7  -x 340 -y 250 -Z 0 -z 30  -v circle -c black
+n -t * -s 8  -x 420 -y 500 -Z 0 -z 30  -v circle -c black
+n -t * -s 9  -x 420 -y 250 -Z 0 -z 30  -v circle -c black
+V -t * -v 1.0a5 -a 0
+W -t * -x 800 -y 600
+A -t * -n 1 -p 0 -o 0x7fffffff -c 30 -a 1
+A -t * -h 1 -m 1073741823 -s 0
+n -t 0 -s 0 -S COLOR -c black -o blue -i black -I blue
+n -t 0 -s 1 -S COLOR -c black -o red -i black -I red
+n -t 0 -s 2 -S COLOR -c black -o red -i black -I red
+n -t 0 -s 3 -S COLOR -c black -o blue -i black -I blue
+n -t 0 -s 4 -S COLOR -c black -o red -i black -I red
+n -t 0 -s 5 -S COLOR -c black -o red -i black -I red
+n -t 0 -s 6 -S COLOR -c black -o red -i black -I red
+n -t 0 -s 7 -S COLOR -c black -o blue -i black -I blue
+n -t 0 -s 8 -S COLOR -c black -o blue -i black -I blue
+n -t 0 -s 9 -S COLOR -c black -o blue -i black -I blue
++ -t 0.003769945 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR 
+- -t 0.003769945 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
+h -t 0.003769945 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
+r -t 0.004630212 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
+r -t 0.004630478 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
+r -t 0.004630745 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
+r -t 0.004630778 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
++ -t 0.034809998 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR 
+- -t 0.034809998 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+h -t 0.034809998 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+r -t 0.035870265 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+r -t 0.035870265 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+r -t 0.035870531 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+r -t 0.035870798 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+r -t 0.035870831 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
++ -t 0.177993395 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR 
+- -t 0.177993395 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
+h -t 0.177993395 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
+r -t 0.179133662 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
+r -t 0.179133662 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
+r -t 0.179133928 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
+r -t 0.179134195 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
+r -t 0.179134228 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 2 -k RTR
++ -t 0.471784383 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR 
+- -t 0.471784383 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+h -t 0.471784383 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+r -t 0.472844650 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+r -t 0.472844917 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+r -t 0.472845183 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+r -t 0.472845217 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+n -t 0.5 -s 5 -S COLOR -c red -o black -i red -I black
+n -t 0.5 -s 1 -S COLOR -c red -o black -i red -I black
+n -t 0.5 -s 2 -S COLOR -c red -o black -i red -I black
+n -t 0.5 -s 4 -S COLOR -c red -o black -i red -I black
+n -t 0.5 -s 6 -S COLOR -c red -o black -i red -I black
+n -t 0.5 -s 8 -S COLOR -c blue -o black -i blue -I black
+n -t 0.5 -s 0 -S COLOR -c blue -o black -i blue -I black
+n -t 0.5 -s 3 -S COLOR -c blue -o black -i blue -I black
+n -t 0.5 -s 7 -S COLOR -c blue -o black -i blue -I black
+n -t 0.5 -s 9 -S COLOR -c blue -o black -i blue -I black
++ -t 0.632846612 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR 
+- -t 0.632846612 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
+h -t 0.632846612 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
+r -t 0.634066878 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
+r -t 0.634066878 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
+r -t 0.634067145 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
+r -t 0.634067412 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
+r -t 0.634067445 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 4 -k RTR
++ -t 0.884759020 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR 
+- -t 0.884759020 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
+h -t 0.884759020 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
+r -t 0.885879287 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
+r -t 0.885879287 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
+r -t 0.885879554 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
+r -t 0.885879554 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
+r -t 0.885879854 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 5 -k RTR
++ -t 1.120810887 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR 
+- -t 1.120810887 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR
+h -t 1.120810887 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR
+r -t 1.121911153 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR
+r -t 1.121911420 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR
+r -t 1.121911687 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR
+r -t 1.121911720 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 6 -k RTR
++ -t 1.279603939 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR 
+- -t 1.279603939 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR
+h -t 1.279603939 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR
+r -t 1.280644206 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR
+r -t 1.280644472 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR
+r -t 1.280644739 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR
+r -t 1.280644772 -s 8 -d -1 -p message -e 32 -c 2 -a 0 -i 7 -k RTR
++ -t 1.599431220 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR 
+- -t 1.599431220 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
+h -t 1.599431220 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
+r -t 1.600371487 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
+r -t 1.600371487 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
+r -t 1.600371754 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
+r -t 1.600371754 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
+r -t 1.600372054 -s 4 -d -1 -p message -e 32 -c 2 -a 0 -i 8 -k RTR
++ -t 1.636308730 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR 
+- -t 1.636308730 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
+h -t 1.636308730 -s 7 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
+r -t 1.637308997 -s 5 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
+r -t 1.637308997 -s 9 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
+r -t 1.637309264 -s 3 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
+r -t 1.637309530 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
+r -t 1.637309564 -s 6 -d -1 -p message -e 32 -c 2 -a 0 -i 9 -k RTR
