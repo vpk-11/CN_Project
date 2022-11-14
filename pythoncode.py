@@ -32,18 +32,11 @@ def cluster_head(arr,vel,x,y):
                 dmtr = 1.0 * 2 * R * ma.pow(vel[i]-vel[j],2)
                 #print(dmtr)
                 val = nmrt/dmtr
-                # print(val)
+                #print(val)
                 if val > E:
                     graph[i][j]=1
                     graph[j][i]=1
-    # print(graph)
-    # knapsack_model = Model('knapsack')
-    # x = knapsack_model.addVars(n,vtype=GRB.BINARY,name="x")
-    # obj_fn = -(sum(x[i]) for i in range(n))
-    # knapsack_model.setObjective(obj_fn, GRB.MINIMIZE)
-    # knapsack_model.addConstr(x*graph*x.transpose()=0)
-    # knapsack_model.setParam('OutputFlag',False)
-    # knapsack_model.optimize()
+    #print(graph)
     
     knapsack_model = Model('knapsack')
     x = knapsack_model.addVars(n,vtype=GRB.BINARY,name="x")
@@ -154,7 +147,7 @@ def kmeans(arr,vel,x,y,C):
     file.write(str1)
     file.close()
 
-arr = [1,2,3,4,5,6,7,8,9,10]
+arr = [0,1,2,3,4,5,6,7,8,9]
 vel = [60,70,-70,65,-75,90,120,-60,95,110]
 x = [7,3,1,2,2,4,5,6,6,8]
 y = [1,1,1,0,1,1,1,0,0,1]

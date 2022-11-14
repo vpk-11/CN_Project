@@ -108,7 +108,7 @@ $ns initial_node_pos $n(9) 20
 
 # position of the nodes
 $n(0) set X_ 70.0
-$n(0) set Y_ 500.0
+$n(0) set Y_ 50.0
 $n(0) set Z_ 0.0
 $ns at 0.0 "$n(0) setdest 200.0 50.0 60.0"
 
@@ -168,8 +168,8 @@ foreach line $lines {
     # puts "$line"
     set words [split $line " "]
 	set cH [lindex $words 0]
-    $n($cH) color $colors($inr)
     $ns at 0.5 "$n($cH) color $colors($inr)"
+    $n($cH) color $colors($inr)
     # foreach it $words 
 	set length [llength $words]
 	for {set ind 1} { $ind < $length } { incr ind } {
@@ -178,9 +178,6 @@ foreach line $lines {
 		puts "$it"
         $ns at 0.5 "$n($it) color $colors($inr)"
         $n($it) color $colors($inr)
-		# if($it == $cH){
-		# 	continue;
-		# }
 		# Comms between head and node
 		set tcp [new Agent/TCP]
 		set sink [new Agent/TCPSink]
@@ -189,13 +186,13 @@ foreach line $lines {
 		$ns connect $tcp $sink
 		set ftp [new Application/FTP]
 		$ftp attach-agent $tcp
-		$ns at 2.0 "$ftp start"
+		$ns at 1.0 "$ftp start"
 		puts "TCP Connected b/w $it and $cH"
     }
     set inr [incr inr]
 }
 
-$ns at 20.0 "finish"
+$ns at 100.0 "finish"
 
 proc finish {} {
     puts "Proc finish"
@@ -205,8 +202,10 @@ proc finish {} {
     close $namfile
     exec nam out.nam &
 	puts "exec nam"
-	# exec awk -f awk_files/avg_throu.awk out.tr > avg_throu_out &
-	# exec awk -f awk_files/pdr.awk out.tr > pdr_out &
+	exec awk -f awk_files/throughput.awk out.tr > throu_out &
+	exec awk -f awk_files/pdr_1.awk out.tr > pdr_out &
+    exec awk -f awk_files/e2edelay.awk out.tr > e2edelay_out &
+    exec awk -f awk_files/pDropped.awk out.tr > pDropped_out &
     exit 0
 }
 
