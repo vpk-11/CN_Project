@@ -9,8 +9,8 @@ set val(ant)            Antenna/OmniAntenna         ;# antenna model
 set val(ifqlen)         50                          ;# max packet in ifq
 set val(nn)             6                           ;# number of mobilenodes
 set val(rp)             AODV                        ;# routing protocol
-set val(x)		        500                         ;# in metres
-set val(y)		        500			                ;# in metres
+set val(x)		        500                        	;# in metres
+set val(y)		        500			            	;# in metres
 
 # Array of Colors
 set colors(0) red
@@ -110,56 +110,58 @@ $ns initial_node_pos $n9 50
 # Time? Node? x2? y2? speed?
 # $ns at 1.0 "$n1 setdest 490.0 340.0 25.0"
 
-# position of the nodes 
-$n0 set X_ 10.0
-$n0 set Y_ 20.0
+# position of the nodes
+$n0 set X_ 70.0
+$n0 set Y_ 500.0
 $n0 set Z_ 0.0
-$ns at 1.0 "$n0 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n0 setdest 490.0 340.0 60.0"
 
-$n1 set X_ 210.0
-$n1 set Y_ 230.0
+$n1 set X_ 30.0
+$n1 set Y_ 500.0
 $n1 set Z_ 0.0
-$ns at 1.0 "$n1 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n1 setdest 490.0 340.0 70.0"
 
-$n2 set X_ 100.0
-$n2 set Y_ 200.0
+$n2 set X_ 10.0
+$n2 set Y_ 500.0
 $n2 set Z_ 0.0
-$ns at 1.0 "$n2 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n2 setdest 490.0 340.0 -70.0"
 
-$n3 set X_ 150.0
-$n3 set Y_ 230.0
+$n3 set X_ 20.0
+$n3 set Y_ 250.0
 $n3 set Z_ 0.0
-$ns at 1.0 "$n3 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n3 setdest 490.0 340.0 65.0"
 
-$n4 set X_ 430.0
-$n4 set Y_ 320.0
+$n4 set X_ 20.0
+$n4 set Y_ 500.0
 $n4 set Z_ 0.0
-$ns at 1.0 "$n4 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n4 setdest 490.0 340.0 -75.0"
 
-$n5 set X_ 270.0
-$n5 set Y_ 120.0
+$n5 set X_ 40.0
+$n5 set Y_ 500.0
 $n5 set Z_ 0.0
-$ns at 1.0 "$n5 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n5 setdest 490.0 340.0 90.0"
 
-$n6 set X_ 270.0
-$n6 set Y_ 120.0
+$n6 set X_ 50.0
+$n6 set Y_ 250.0
 $n6 set Z_ 0.0
-$ns at 1.0 "$n6 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n6 setdest 490.0 340.0 120.0"
 
-$n7 set X_ 270.0
-$n7 set Y_ 120.0
+$n7 set X_ 60.0
+$n7 set Y_ 250.0
 $n7 set Z_ 0.0
-$ns at 1.0 "$n7 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n7 setdest 490.0 340.0 -60.0"
 
-$n8 set X_ 270.0
-$n8 set Y_ 120.0
+$n8 set X_ 60.0
+$n8 set Y_ 500.0
 $n8 set Z_ 0.0
-$ns at 1.0 "$n8 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n8 setdest 490.0 340.0 95.0"
 
-$n9 set X_ 270.0
-$n9 set Y_ 120.0
+$n9 set X_ 80.0
+$n9 set Y_ 500.0
 $n9 set Z_ 0.0
-$ns at 1.0 "$n9 setdest 490.0 340.0 25.0"
+$ns at 1.0 "$n9 setdest 490.0 340.0 110.0"
+
+# vel = [60,70,-70,65,-75,90,120,-60,95,110]
 
 #  Slurp up the data file
 set fp [open "Input.txt"]
