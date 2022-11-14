@@ -32,11 +32,11 @@ def cluster_head(arr,vel,x,y):
                 dmtr = 1.0 * 2 * R * ma.pow(vel[i]-vel[j],2)
                 #print(dmtr)
                 val = nmrt/dmtr
-                print(val)
+                # print(val)
                 if val > E:
                     graph[i][j]=1
                     graph[j][i]=1
-    print(graph)
+    # print(graph)
     # knapsack_model = Model('knapsack')
     # x = knapsack_model.addVars(n,vtype=GRB.BINARY,name="x")
     # obj_fn = -(sum(x[i]) for i in range(n))
@@ -57,13 +57,13 @@ def cluster_head(arr,vel,x,y):
     for v in knapsack_model.getVars():
         if v.x==1:
             clusterheads.append(int(v.varName[2:3]))
-            print(v.varName,v.x)
+            # print(v.varName,v.x)
 
-    sizeo = len(clusterheads)
+    # sizeo = len(clusterheads)
     
     #Debugging
-    for p in range(sizeo):
-        print(clusterheads[p])
+    # for p in range(sizeo):
+    #     print(clusterheads[p])
 
     return clusterheads
 
@@ -75,7 +75,7 @@ def kmeans(arr,vel,x,y,C):
     linkr = [[0] * n] * n
     T = [[0] * n] * n
     visited=[False]*n
-    print(visited)
+    # print(visited)
     for qq in range(m):
         visited[C[qq]]=True
     #Creating dictionary for cluster head - node pairs
@@ -94,7 +94,7 @@ def kmeans(arr,vel,x,y,C):
         flag = 0
         for j in range(0,m):
             if visited[i]!=True:
-                print(i)
+                # print(i)
                 flag = 1
                 L = ma.sqrt(ma.pow(y[i]-y[C[j]],2)+ma.pow(x[i]-x[C[j]],2))
                 delV = vel[i] - vel[C[j]]
@@ -124,7 +124,7 @@ def kmeans(arr,vel,x,y,C):
         flag = 0
         for j in range(0,m):
             if visited[i]!=True:
-                print(i)
+                # print(i)
                 flag = 1
                 L = ma.sqrt(ma.pow(y[i]-y[C[j]],2)+ma.pow(x[i]-x[C[j]],2))
                 delV = vel[i] - vel[C[j]]
