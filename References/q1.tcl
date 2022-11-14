@@ -15,6 +15,7 @@ set NETWORK_NODE 10
 set y1           500
 set y2           250
 set x1           100
+
 # Array of colors
 set colors(0) red
 set colors(1) blue

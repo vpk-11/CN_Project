@@ -1,0 +1,10 @@
+n -t * -s 0  -x 0 -y 0 -Z 0 -z 20  -v circle -c black
+n -t * -s 1  -x 0 -y 0 -Z 0 -z 20  -v circle -c black
+n -t * -s 2  -x 0 -y 0 -Z 0 -z 20  -v circle -c black
+n -t * -s 3  -x 0 -y 0 -Z 0 -z 20  -v circle -c black
+n -t * -s 4  -x 0 -y 0 -Z 0 -z 20  -v circle -c black
+n -t * -s 5  -x 0 -y 0 -Z 0 -z 50  -v circle -c black
+n -t * -s 6  -x 0 -y 0 -Z 0 -z 50  -v circle -c black
+n -t * -s 7  -x 0 -y 0 -Z 0 -z 50  -v circle -c black
+n -t * -s 8  -x 0 -y 0 -Z 0 -z 50  -v circle -c black
+n -t * -s 9  -x 0 -y 0 -Z 0 -z 50  -v circle -c black
