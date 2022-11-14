@@ -8,8 +8,8 @@ set val(ll)      LL                          ;# link layer type
 set val(ant)     Antenna/OmniAntenna         ;# antenna model
 set val(ifqlen)  50                          ;# max packet in ifq
 set val(rp)      DSDV                        ;# routing protocol
-set val(x)       500                         ;# X dimension of topography
-set val(y)       500                         ;# Y dimension of topography 
+set val(x)       800                         ;# X dimension of topography
+set val(y)       800                         ;# Y dimension of topography 
 set val(stop)    10                          ;# time of simulation end
 set val(nn)      10                    		 ;# number of mobilenodes
 
@@ -110,54 +110,53 @@ $ns initial_node_pos $n(9) 50
 $n(0) set X_ 70.0
 $n(0) set Y_ 500.0
 $n(0) set Z_ 0.0
-# $ns at 1.0 "$n(0) setdest 490.0 340.0 60.0"
+$ns at 1.0 "$n(0) setdest 490.0 500.0 60.0"
 
 $n(1) set X_ 30.0
 $n(1) set Y_ 500.0
 $n(1) set Z_ 0.0
-# $ns at 1.0 "$n(1) setdest 490.0 340.0 70.0"
+$ns at 1.0 "$n(1) setdest 490.0 500.0 70.0"
 
 $n(2) set X_ 10.0
 $n(2) set Y_ 500.0
 $n(2) set Z_ 0.0
-# $ns at 1.0 "$n(2) setdest 490.0 340.0 70.0"
+$ns at 1.0 "$n(2) setdest 490.0 500.0 70.0"
 
 $n(3) set X_ 20.0
 $n(3) set Y_ 250.0
 $n(3) set Z_ 0.0
-# $ns at 1.0 "$n(3) setdest 490.0 340.0 65.0"
+$ns at 1.0 "$n(3) setdest 490.0 250.0 65.0"
 
 $n(4) set X_ 20.0
 $n(4) set Y_ 500.0
 $n(4) set Z_ 0.0
-# $ns at 1.0 "$n(4) setdest 490.0 340.0 75.0"
+$ns at 1.0 "$n(4) setdest 490.0 500.0 75.0"
 
 $n(5) set X_ 40.0
 $n(5) set Y_ 500.0
 $n(5) set Z_ 0.0
-# $ns at 1.0 "$n(5) setdest 490.0 340.0 90.0"
+$ns at 1.0 "$n(5) setdest 490.0 500.0 90.0"
 
 $n(6) set X_ 50.0
 $n(6) set Y_ 250.0
 $n(6) set Z_ 0.0
-# $ns at 1.0 "$n(6) setdest 490.0 340.0 120.0"
+$ns at 1.0 "$n(6) setdest 490.0 250.0 120.0"
 
 $n(7) set X_ 60.0
 $n(7) set Y_ 250.0
 $n(7) set Z_ 0.0
-# $ns at 1.0 "$n(7) setdest 490.0 340.0 60.0"
+$ns at 1.0 "$n(7) setdest 490.0 250.0 60.0"
 
 $n(8) set X_ 60.0
 $n(8) set Y_ 500.0
 $n(8) set Z_ 0.0
-# $ns at 1.0 "$n(8) setdest 490.0 340.0 95.0"
+$ns at 1.0 "$n(8) setdest 490.0 500.0 95.0"
 
 $n(9) set X_ 80.0
 $n(9) set Y_ 500.0
 $n(9) set Z_ 0.0
-# $ns at 1.0 "$n(9) setdest 490.0 340.0 110.0"
+$ns at 1.0 "$n(9) setdest 490.0 500.0 110.0"
 
-# vel = [60,70,-70,65,-75,90,120,-60,95,110]
 
 #  Slurp up the data file
 set fp [open "Input.txt"]
@@ -169,13 +168,17 @@ foreach line $lines {
     # puts "$line"
     set words [split $line " "]
 	set cH [lindex $words 0]
-    foreach it $words {
-        puts "$it"
+    # foreach it $words 
+	set length [llength $words]
+	for {set ind 1} { $ind < $length } { incr ind } {
+        puts "$ind"
+		set it [lindex $words $ind]
+		puts "$it"
         $ns at 0.5 "$n($it) color $colors($inr)"
         $n($it) color $colors($inr)
-		if($it == $cH){
-			continue;
-		}
+		# if($it == $cH){
+		# 	continue;
+		# }
 		# Comms between head and node
 		set tcp [new Agent/TCP]
 		set sink [new Agent/TCPSink]
