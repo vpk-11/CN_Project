@@ -202,10 +202,10 @@ proc finish {} {
     close $namfile
     exec nam out.nam &
 	puts "exec nam"
-	exec awk -f awk_files/throughput.awk out.tr > throu_out &
-	exec awk -f awk_files/pdr_1.awk out.tr > pdr_out &
-    exec awk -f awk_files/e2edelay.awk out.tr > e2edelay_out &
-    exec awk -f awk_files/pDropped.awk out.tr > pDropped_out &
+	exec awk -f awk_files/throughput.awk out.tr > output/throu_out &
+	exec awk -f awk_files/pdr_1.awk out.tr > output/pdr_out &
+    exec awk -f awk_files/e2edelay.awk out.tr > output/e2edelay_out &
+    exec awk -f awk_files/pDropped.awk out.tr > output/pDropped_out &
     exit 0
 }
 
