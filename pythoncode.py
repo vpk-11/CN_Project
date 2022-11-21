@@ -9,7 +9,7 @@ import statistics as stat
 from gurobipy import *
 import subprocess
 
-#Defining constants
+# Defining constants
 R = 0.250
 E = 0.991833
 U0 = 25
@@ -21,7 +21,7 @@ PHI = 2.7168
 GAM = 0.7
 D = 700
 
-#Finding cluster heads through MSSP and CHN
+# Finding cluster heads through MSSP and CHN
 def cluster_head(arr,vel,x,y):
     n = len(vel)
     clusterheads = []
@@ -29,47 +29,47 @@ def cluster_head(arr,vel,x,y):
     for i in range(0,n):
         for j in range(0,n):
             if i!=j:
-                L = ma.sqrt(ma.pow(y[i]-y[j],2)+ma.pow(x[i]-x[j],2))
+                L = ma.sqrt(ma.pow(y[i] - y[j], 2)+ ma.pow(x[i] - x[j], 2))
                 print(L)
-                nmrt = (-(vel[i]-vel[j]) * L) + (abs(vel[i]-vel[j])*R)
+                nmrt = (-(vel[i] - vel[j]) * L) + (abs(vel[i] - vel[j]) * R)
                 print(nmrt)
-                dmtr = 1.0 * 2 * R * ma.pow(vel[i]-vel[j],2)
+                dmtr = 1.0 * 2 * R * ma.pow(vel[i] - vel[j], 2)
                 print(dmtr)
                 print(" ")
                 val = (nmrt/dmtr)
                 # print(val)
                 if val > E:
-                    graph[i][j]=1
-                    graph[j][i]=1
+                    graph[i][j] = 1
+                    graph[j][i] = 1
     print(graph)
     
-    #Quadratic Programming Problem solver
+    # Quadratic Programming Problem solver
     knapsack_model = Model('knapsack')
-    x = knapsack_model.addVars(n,vtype=GRB.BINARY,name="x")
+    x = knapsack_model.addVars(n, vtype=GRB.BINARY, name="x")
     obj_fn = -(sum(x[i] for i in range(n)))
-    #x1 = np.matrix(x)
+    # x1 = np.matrix(x)
     knapsack_model.setObjective(obj_fn, GRB.MINIMIZE)
-    knapsack_model.addConstr(sum(x[i]*(sum(x[j]*graph[j][i] for j in range(n))) for i in range(n))<=0)
-    #knapsack_model.addConstr(x[i]+x[i+1]<=1 for i in range(n))
+    knapsack_model.addConstr(sum(x[i] * (sum(x[j]*graph[j][i] for j in range(n))) for i in range(n)) <= 0)
+    # knapsack_model.addConstr(x[i]+x[i+1]<=1 for i in range(n))
     knapsack_model.setParam('OutputFlag',False)
     knapsack_model.optimize()
 
-    #Storing Cluster heads
+    # Storing Cluster heads
     for v in knapsack_model.getVars():
-        if v.x==1:
+        if v.x == 1:
             print(v.varName,v.x)
-            if v.varName[3:4]==']':
+            if v.varName[3:4] == ']':
                 clusterheads.append(int(v.varName[2:3]))
             else:
                 clusterheads.append(int(v.varName[2:4]))
             
 
     sizeo = len(clusterheads)
-    if(sizeo==0):
+    if(sizeo == 0):
         for v in knapsack_model.getVars():
-            if v.x==0:
+            if v.x == 0:
                 print(v.varName,v.x)
-                if v.varName[3:4]==']':
+                if v.varName[3:4] == ']':
                     clusterheads.append(int(v.varName[2:3]))
                 else:
                     clusterheads.append(int(v.varName[2:4]))
@@ -87,21 +87,21 @@ def kmeans(arr,vel,x,y,C):
     m = len(C)
     linkr = [[0] * n] * n
     T = [[0] * n] * n
-    visited=[False]*n
+    visited = [False] * n
     # print(visited)
     for qq in range(m):
-        visited[C[qq]]=True
+        visited[C[qq]] = True
     
-    #Creating dictionary for cluster head - node pairs
-    final={C[k]:[] for k in range(0,m)}
+    # Creating dictionary for cluster head - node pairs
+    final = {C[k]:[] for k in range(0,m)}
 
-    #Finding mean, std.deviation and variance
+    # Finding mean, std.deviation and variance
     
     
-    if len(vel)>1:
-        variance=stat.variance(vel)
-        stand=stat.stdev(vel)
-        mean=stat.mean(vel)
+    if len(vel) > 1:
+        variance = stat.variance(vel)
+        stand = stat.stdev(vel)
+        mean = stat.mean(vel)
     else:
         variance = 1
         stand = 1
@@ -113,18 +113,18 @@ def kmeans(arr,vel,x,y,C):
     maxans = 0
     ind = -1  
 
-    #Creating clusters
-    for i in range(0,n):
+    # Creating clusters
+    for i in range(0, n):
         flag = 0
-        for j in range(0,m):
+        for j in range(0, m):
             if visited[i]!=True:
                 # print(i)
                 flag = 1
-                L = ma.sqrt(ma.pow(y[i]-y[C[j]],2)+ma.pow(x[i]-x[C[j]],2))
+                L = ma.sqrt(ma.pow(y[i] - y[C[j]], 2) + ma.pow(x[i] - x[C[j]], 2))
                 delV = vel[i] - vel[C[j]]
                 T[i][j] = L / delV
 
-                #Integrate
+                # Integrate
                 intgr = smp.integrate(f,(t,0,T[i][j]))
                 
                 
@@ -132,15 +132,15 @@ def kmeans(arr,vel,x,y,C):
                     intgr = constantVar * (LAM/LAMC) * intgr
                 else :
                     intgr = constantVar * intgr
-                if intgr>maxans:
+                if intgr > maxans:
                     maxans = intgr
                     ind = j
-        if flag==1:
-            visited[i]=True
+        if flag == 1:
+            visited[i] = True
             final[C[ind]].append(i)
-        maxans=0
+        maxans = 0
 
-    #Cluster maintainence
+    # Cluster maintainence
     flag1 = False
     for key2 in range(m):
         if len(final[C[key2]])!=0:
@@ -157,7 +157,7 @@ def kmeans(arr,vel,x,y,C):
             C.remove(i)
         m = len(C)
 
-    #Updating Cluster heads
+    # Updating Cluster heads
     for i in range(0,n):
         flag = 0
         for j in range(0,m):
@@ -178,16 +178,18 @@ def kmeans(arr,vel,x,y,C):
             final[C[ind]].append(i)
         maxans=0
 
-    #Storing into one string
+    # Storing into one string
     str1 = ""
     for ti in range(m):
         str1+= str(C[ti])
-        str1+=" "
+        # str1+=" "
         for o in final[C[ti]]:
-            str1+=str(o)
-            str1+=" "
-        str1+='\n'
-    #File Handling
+            str1 += " "
+            str1 += str(o)
+            # str1+= " "
+        if ti!=m-1:
+            str1+='\n'
+    # File Handling
     file = open("Cluster.txt",'w')
 
     file.write(str1)
@@ -230,35 +232,35 @@ arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
 print(len(vel))
 
-#Distances are in metres/10
+# Distances are in metres/10
 x = [7,3,1,2,2,4,5,5,6,8,12,11,7,4,7]
 print(len(x))
 y = [1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1]
 print(len(y))
-#Storing into one string
+# Storing into one string
 def inputtxt(x,y,vel,arr):
     str1 = ""
-    m= len(vel)
+    m = len(vel)
     for ti in range(m):
-        str1+= str(arr[ti] - 1)
-        str1+=" "
-        str1+= str(x[ti]*25)
-        str1+=" "
-        if y[ti]==1:
-            str1+= str(500)
+        str1 += str(arr[ti] - 1)
+        str1 += " "
+        str1 += str(x[ti]*25)
+        str1 += " "
+        if y[ti] == 1:
+            str1 += str(500)
         else:
-            str1+= str(250)
-        str1+=" "
-        str1+= str(abs(vel[ti]))
-        str1+=" "
-        if y[ti]==1:
-            str1+= str(999)
-            str1+= " "
-            str1+= str(500)
+            str1 += str(250)
+        str1 += " "
+        str1 += str(abs(vel[ti]))
+        str1 += " "
+        if y[ti] == 1:
+            str1 += str(999)
+            str1 += " "
+            str1 += str(500)
         else:
-            str1+= str(1)
-            str1+= " "
-            str1+= str(250)
+            str1 += str(1)
+            str1 += " "
+            str1 += str(250)
         if ti!=m-1:
             str1+='\n'
 
@@ -271,7 +273,7 @@ def inputtxt(x,y,vel,arr):
 inputtxt(x,y,vel,arr)
 ch = cluster_head(arr,vel,x,y)
 kmeans(arr,vel,x,y,ch)
-subprocess.call(['sh','./test.sh'])
+# subprocess.call(['sh','./test.sh'])
 
 # remaining_nodes(x,y,vel,40)
 # ch = cluster_head(arr,vel,x,y)
