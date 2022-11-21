@@ -1,7 +1,7 @@
 BEGIN {
        recvdSize = 0
        startTime = 0
-       stopTime = 50
+       stopTime = 100
   }
    
   {
