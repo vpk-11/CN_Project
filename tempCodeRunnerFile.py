@@ -1,0 +1,5 @@
+remaining_nodes(x,y,vel,60)
+ch = cluster_head(arr,vel,x,y)
+# kmeans(arr,vel,x,y,ch)
+inputtxt(x,y,vel,arr)
+advancekmeans(x,y,vel,ch)

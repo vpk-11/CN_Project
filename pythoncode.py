@@ -202,6 +202,87 @@ def kmeans(arr,vel,x,y,C):
 # # x = [0.120,0.130,0.140,0.150,0.160,0.170,0.170,0.180,0.190,0.200]
 # y = [1,1,0,0,1,1,1,0,0,1]
 # # y = [0.500,0.500,0.250,0.250,0.500,0.500,0.500,0.250,0.250,0.500]
+def advancekmeans(x,y,vel,C):
+    w1=0.4
+    w2=0.6
+    n = len(vel)
+    m = len(C)
+    final = {C[k]:[] for k in range(0,m)}
+    visited = [False] * n
+    for qq in range(m):
+        visited[C[qq]] = True
+    maxans = 0
+    ind = -1 
+    for i in range(n):
+        flag = 0
+        for j in range(m):
+            if visited[i]!=True:
+                flag=1
+                param1 = w1 * (vel[i] - vel[C[j]]/max(vel))
+                L = ma.sqrt(ma.pow(y[i] - y[C[j]], 2) + ma.pow(x[i] - x[C[j]], 2))
+                param2 = w2 * L
+                intgr = param1 - param2
+                if intgr > maxans:
+                        maxans = intgr
+                        ind = j
+        if flag == 1:
+            visited[i] = True
+            final[C[ind]].append(i)
+        maxans = 0
+
+    flag1 = False
+    for key2 in range(m):
+        if len(final[C[key2]])!=0:
+            flag1= True
+            break
+    if flag1 == True:
+        temp1=[]
+        for key1 in range(m):
+            if len(final[C[key1]])==0:
+                visited[C[key1]]=False
+                temp1.append(C[key1])
+        for i in temp1:
+            del final[i]
+            C.remove(i)
+        m = len(C)
+    
+    
+    for i in range(n):
+        flag = 0
+        for j in range(m):
+            if visited[i]!=True:
+                flag = 1
+                if vel[i]>0:
+                    param1 = 10
+                else :
+                    param1 = -1
+                param1 = w1 * (vel[i] - vel[C[j]]/max(vel))
+                L = ma.sqrt(ma.pow(y[i] - y[C[j]], 2) + ma.pow(x[i] - x[C[j]], 2))
+                param2 = w2 * L
+                intgr = param1 - param2
+                if intgr > maxans:
+                        maxans = intgr
+                        ind = j
+        if flag == 1:
+            visited[i] = True
+            final[C[ind]].append(i)
+        maxans = 0
+
+    str1 = ""
+    for ti in range(m):
+        str1+= str(C[ti])
+        # str1+=" "
+        for o in final[C[ti]]:
+            str1 += " "
+            str1 += str(o)
+            # str1+= " "
+        if ti!=m-1:
+            str1+='\n'
+    # File Handling
+    file = open("Cluster.txt",'w')
+
+    file.write(str1)
+    file.close()
 
 
 def remaining_nodes(x,y,vel,t):
@@ -272,25 +353,29 @@ def inputtxt(x,y,vel,arr):
 # upvel=vel
 inputtxt(x,y,vel,arr)
 ch = cluster_head(arr,vel,x,y)
-kmeans(arr,vel,x,y,ch)
-subprocess.call(['sh','./test.sh'])
-
-# remaining_nodes(x,y,vel,40)
-# ch = cluster_head(arr,vel,x,y)
 # kmeans(arr,vel,x,y,ch)
-# inputtxt(x,y,vel,arr)
+advancekmeans(x,y,vel,ch)
+# subprocess.call(['sh','./test.sh'])
+
+remaining_nodes(x,y,vel,40)
+ch = cluster_head(arr,vel,x,y)
+# kmeans(arr,vel,x,y,ch)
+inputtxt(x,y,vel,arr)
+advancekmeans(x,y,vel,ch)
 # # subprocess.call(['sh','./shellscript.sh'])
 
 # remaining_nodes(x,y,vel,50)
 # ch = cluster_head(arr,vel,x,y)
-# kmeans(arr,vel,x,y,ch)
+# # kmeans(arr,vel,x,y,ch)
 # inputtxt(x,y,vel,arr)
+# advancekmeans(x,y,vel,ch)
 # # subprocess.call(['sh','./shellscript.sh'])
 
 # remaining_nodes(x,y,vel,60)
 # ch = cluster_head(arr,vel,x,y)
-# kmeans(arr,vel,x,y,ch)
+# # kmeans(arr,vel,x,y,ch)
 # inputtxt(x,y,vel,arr)
+# advancekmeans(x,y,vel,ch)
 # subprocess.call(['sh','./shellscript.sh'])
 
 # ch = cluster_head(arr,vel,x,y)
