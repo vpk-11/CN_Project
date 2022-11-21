@@ -244,7 +244,7 @@ def inputtxt(x,y,vel,arr):
     for ti in range(m):
         str1 += str(arr[ti] - 1)
         str1 += " "
-        str1 += str(x[ti]*25)
+        str1 += str(x[ti] + 250)
         str1 += " "
         if y[ti] == 1:
             str1 += str(500)
@@ -273,7 +273,7 @@ def inputtxt(x,y,vel,arr):
 inputtxt(x,y,vel,arr)
 ch = cluster_head(arr,vel,x,y)
 kmeans(arr,vel,x,y,ch)
-# subprocess.call(['sh','./test.sh'])
+subprocess.call(['sh','./test.sh'])
 
 # remaining_nodes(x,y,vel,40)
 # ch = cluster_head(arr,vel,x,y)
