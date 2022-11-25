@@ -309,6 +309,15 @@ def remaining_nodes(x,y,vel,t):
             ind = vel.index(i)
             x[ind]=x[ind]+(i*t)
     
+# For 10 
+# arr_15 = [1,2,3,4,5,6,7,8,9,10]
+# vel_15 = [60,70,65,-85,75,90,120,-100,-115,110]
+# print(len(vel_15))
+# # Distances are in metres/10
+# x_15 = [7,3,1,2,2,4,5,5,6,8]
+# print(len(x_15))
+# y_15 = [1,1,1,0,1,1,1,0,0,1]
+# print(len(y_15))
 
 arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 # vel = [60,70,-70,65,-75,90,120,-60,95,110]
@@ -317,8 +326,8 @@ arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 # vel = [60,70,65,-85,75,90,120,-100,-115,110]
 
+
 vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
-# vel = [60,70,65,85,75,90,120,100,115,110,61,71,82,93,104]
 print(len(vel))
 
 # Distances are in metres/10
@@ -361,30 +370,23 @@ def inputtxt(x,y,vel,arr):
 # upvel=vel
 inputtxt(x,y,vel,arr)
 ch = cluster_head(arr,vel,x,y)
-kmeans(arr,vel,x,y,ch)
-# advancekmeans(x,y,vel,ch)
+# kmeans(arr,vel,x,y,ch)
+advancekmeans(x,y,vel,ch)
 # subprocess.call(['sh','./test.sh'])
 
-# remaining_nodes(x,y,vel,40)
-# ch = cluster_head(arr,vel,x,y)
-# # kmeans(arr,vel,x,y,ch)
-# inputtxt(x,y,vel,arr)
-# advancekmeans(x,y,vel,ch)
+remaining_nodes(x,y,vel,40)
+ch = cluster_head(arr,vel,x,y)
+# kmeans(arr,vel,x,y,ch)
+inputtxt(x,y,vel,arr)
+advancekmeans(x,y,vel,ch)
 # # subprocess.call(['sh','./shellscript.sh'])
 
-# remaining_nodes(x,y,vel,50)
-# ch = cluster_head(arr,vel,x,y)
-# # kmeans(arr,vel,x,y,ch)
-# inputtxt(x,y,vel,arr)
-# advancekmeans(x,y,vel,ch)
-# # subprocess.call(['sh','./shellscript.sh'])
-
-# remaining_nodes(x,y,vel,60)
-# ch = cluster_head(arr,vel,x,y)
-# # kmeans(arr,vel,x,y,ch)
-# inputtxt(x,y,vel,arr)
-# advancekmeans(x,y,vel,ch)
-# subprocess.call(['sh','./shellscript.sh'])
+# remaining_nodes(x_15,y_15,vel_15,60)
+# ch = cluster_head(arr_15,vel_15,x_15,y_15)
+# kmeans(arr_15,vel_15,x_15,y_15,ch)
+# inputtxt(x_15,y_15,vel_15,arr_15)
+# advancekmeans(x_15,y_15,vel_15,ch)
+# subprocess.call(['sh','./test.sh'])
 
 # ch = cluster_head(arr,vel,x,y)
 # kmeans(arr,vel,x,y,ch)

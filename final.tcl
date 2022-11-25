@@ -11,7 +11,7 @@ set val(rp)      DSDV                        ;# routing protocol
 set val(x)       1000                        ;# X dimension of topography
 set val(y)       600                         ;# Y dimension of topography 
 set val(stop)    10                          ;# time of simulation end
-set val(nn)      15                   		 ;# number of mobilenodes
+set val(nn)      30                   		 ;# number of mobilenodes
 
 # Array of Colors
 set colors(0) red
