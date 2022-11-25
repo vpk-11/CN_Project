@@ -370,15 +370,15 @@ def inputtxt(x,y,vel,arr):
 # upvel=vel
 inputtxt(x,y,vel,arr)
 ch = cluster_head(arr,vel,x,y)
-# kmeans(arr,vel,x,y,ch)
-advancekmeans(x,y,vel,ch)
+kmeans(arr,vel,x,y,ch)
+# advancekmeans(x,y,vel,ch)
 # subprocess.call(['sh','./test.sh'])
 
-remaining_nodes(x,y,vel,40)
-ch = cluster_head(arr,vel,x,y)
-# kmeans(arr,vel,x,y,ch)
-inputtxt(x,y,vel,arr)
-advancekmeans(x,y,vel,ch)
+# remaining_nodes(x,y,vel,40)
+# ch = cluster_head(arr,vel,x,y)
+# # kmeans(arr,vel,x,y,ch)
+# inputtxt(x,y,vel,arr)
+# advancekmeans(x,y,vel,ch)
 # # subprocess.call(['sh','./shellscript.sh'])
 
 # remaining_nodes(x_15,y_15,vel_15,60)
