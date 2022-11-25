@@ -26,12 +26,19 @@ def cluster_head(arr,vel,x,y):
     n = len(vel)
     clusterheads = []
     graph = [[0]*n]*n
+    edges = 0
     for i in range(0,n):
         for j in range(0,n):
             if i!=j:
-                L = ma.sqrt(ma.pow(y[i] - y[j], 2)+ ma.pow(x[i] - x[j], 2))
+                if(vel[i]>vel[j]):
+                    if(y[i]==0): dirn=-1
+                    else: dirn=1
+                else:
+                    if(y[j]==0): dirn=-1
+                    else: dirn=1
+                L = ma.sqrt(ma.pow(y[i] - y[j], 2)+ ma.pow(x[i] - x[j], 2))*dirn
                 print(L)
-                nmrt = (-(vel[i] - vel[j]) * L) + (abs(vel[i] - vel[j]) * R)
+                nmrt = ((-(vel[i] - vel[j]) * L) + (abs(vel[i] - vel[j]) * R))
                 print(nmrt)
                 dmtr = 1.0 * 2 * R * ma.pow(vel[i] - vel[j], 2)
                 print(dmtr)
@@ -41,6 +48,7 @@ def cluster_head(arr,vel,x,y):
                 if val > E:
                     graph[i][j] = 1
                     graph[j][i] = 1
+                    edges+=1
     print(graph)
     
     # Quadratic Programming Problem solver
@@ -50,7 +58,7 @@ def cluster_head(arr,vel,x,y):
     # x1 = np.matrix(x)
     knapsack_model.setObjective(obj_fn, GRB.MINIMIZE)
     knapsack_model.addConstr(sum(x[i] * (sum(x[j]*graph[j][i] for j in range(n))) for i in range(n)) <= 0)
-    # knapsack_model.addConstr(x[i]+x[i+1]<=1 for i in range(n))
+    knapsack_model.addConstr(sum(x[i]*x[j] for i in range(1,n-1) for j in (i-1,i+1))<=0)
     knapsack_model.setParam('OutputFlag',False)
     knapsack_model.optimize()
 
@@ -309,8 +317,8 @@ arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 
 # vel = [60,70,65,-85,75,90,120,-100,-115,110]
 
-
 vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
+# vel = [60,70,65,85,75,90,120,100,115,110,61,71,82,93,104]
 print(len(vel))
 
 # Distances are in metres/10
@@ -353,15 +361,15 @@ def inputtxt(x,y,vel,arr):
 # upvel=vel
 inputtxt(x,y,vel,arr)
 ch = cluster_head(arr,vel,x,y)
-# kmeans(arr,vel,x,y,ch)
-advancekmeans(x,y,vel,ch)
+kmeans(arr,vel,x,y,ch)
+# advancekmeans(x,y,vel,ch)
 # subprocess.call(['sh','./test.sh'])
 
-remaining_nodes(x,y,vel,40)
-ch = cluster_head(arr,vel,x,y)
-# kmeans(arr,vel,x,y,ch)
-inputtxt(x,y,vel,arr)
-advancekmeans(x,y,vel,ch)
+# remaining_nodes(x,y,vel,40)
+# ch = cluster_head(arr,vel,x,y)
+# # kmeans(arr,vel,x,y,ch)
+# inputtxt(x,y,vel,arr)
+# advancekmeans(x,y,vel,ch)
 # # subprocess.call(['sh','./shellscript.sh'])
 
 # remaining_nodes(x,y,vel,50)
