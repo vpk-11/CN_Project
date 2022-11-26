@@ -23,6 +23,7 @@ D = 700
 
 # Finding cluster heads through MSSP and CHN
 def cluster_head(arr,vel,x,y):
+	# MSSP
 	n = len(vel)
 	clusterheads = []
 	graph = [[0]*n]*n
@@ -50,7 +51,8 @@ def cluster_head(arr,vel,x,y):
 					graph[j][i] = 1
 					edges+=1
 	print(graph)
-	
+
+	# CHN Part
 	# Quadratic Programming Problem solver
 	knapsack_model = Model('knapsack')
 	x = knapsack_model.addVars(n, vtype=GRB.BINARY, name="x")
@@ -128,7 +130,14 @@ def kmeans(arr,vel,x,y,C):
 			if visited[i]!=True:
 				# print(i)
 				flag = 1
-				L = ma.sqrt(ma.pow(y[i] - y[C[j]], 2) + ma.pow(x[i] - x[C[j]], 2))
+				if i!=j:
+					if(vel[i]>vel[j]):
+						if(y[i]==0): dirn=-1
+						else: dirn=1
+					else:
+						if(y[j]==0): dirn=-1
+						else: dirn=1
+				L = ma.sqrt(ma.pow(y[i] - y[C[j]], 2) + ma.pow(x[i] - x[C[j]], 2))*dirn
 				delV = vel[i] - vel[C[j]]
 				T[i][j] = L / delV
 
@@ -203,13 +212,6 @@ def kmeans(arr,vel,x,y,C):
 	file.write(str1)
 	file.close()
 
-# arr = [1,2,3,4,5,6,7,8,9,10]
-# vel = [60,70,-70,65,-75,90,120,-60,95,110]
-# x = [7,3,1,2,2,4,5,9,6,80]
-# # vel = [60,70,-70,-62,85,90,100,-60,-95,110]
-# # x = [0.120,0.130,0.140,0.150,0.160,0.170,0.170,0.180,0.190,0.200]
-# y = [1,1,0,0,1,1,1,0,0,1]
-# # y = [0.500,0.500,0.250,0.250,0.500,0.500,0.500,0.250,0.250,0.500]
 def advancekmeans(x,y,vel,C):
 	w1=0.4
 	w2=0.6
@@ -292,7 +294,6 @@ def advancekmeans(x,y,vel,C):
 	file.write(str1)
 	file.close()
 
-
 def remaining_nodes(x,y,vel,t):
 	for i in vel:
 		if abs(i*t)>D:
@@ -308,32 +309,28 @@ def remaining_nodes(x,y,vel,t):
 		else:
 			ind = vel.index(i)
 			x[ind]=x[ind]+(i*t)
-	
-# For 10 
-# arr_15 = [1,2,3,4,5,6,7,8,9,10]
-# vel_15 = [60,70,65,-85,75,90,120,-100,-115,110]
-# print(len(vel_15))
-# # Distances are in metres/10
-# x_15 = [7,3,1,2,2,4,5,5,6,8]
-# print(len(x_15))
-# y_15 = [1,1,1,0,1,1,1,0,0,1]
-# print(len(y_15))
-
-arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-# vel = [60,70,-70,65,-75,90,120,-60,95,110]
-
-
-
-# vel = [60,70,65,-85,75,90,120,-100,-115,110]
-
-
-vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
-print(len(vel))
 
 # Distances are in metres/10
+# For 10 nodes
+# arr = [1,2,3,4,5,6,7,8,9,10]
+# vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
+# x = [7,3,1,2,2,4,5,5,6,8,12,11,7,4,7]
+# y = [1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1]
+
+# For 15 nodes
+arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
 x = [7,3,1,2,2,4,5,5,6,8,12,11,7,4,7]
-print(len(x))
 y = [1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1]
+
+# For 20 Nodes
+# arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+# vel = [60,70,65,-85,75,90,120,-100,-115,110,61,71,82,93,104]
+# x = [7,3,1,2,2,4,5,5,6,8,12,11,7,4,7]
+# y = [1,1,1,0,1,1,1,0,0,1,1,1,1,1,1,1]
+
+print(len(vel))
+print(len(x))
 print(len(y))
 # Storing into one string
 def inputtxt(x,y,vel,arr):
@@ -379,13 +376,13 @@ kmeans(arr,vel,x,y,ch)
 # # kmeans(arr,vel,x,y,ch)
 # inputtxt(x,y,vel,arr)
 # advancekmeans(x,y,vel,ch)
-# # subprocess.call(['sh','./shellscript.sh'])
+# # subprocess.call(['sh','./test.sh'])
 
-# remaining_nodes(x_15,y_15,vel_15,60)
-# ch = cluster_head(arr_15,vel_15,x_15,y_15)
-# kmeans(arr_15,vel_15,x_15,y_15,ch)
-# inputtxt(x_15,y_15,vel_15,arr_15)
-# advancekmeans(x_15,y_15,vel_15,ch)
+# remaining_nodes(x,y,vel,60)
+# ch = cluster_head(arr,vel,x,y)
+# kmeans(arr,vel,x,y,ch)
+# inputtxt(x,y,vel,arr)
+# advancekmeans(x,y,vel,ch)
 # subprocess.call(['sh','./test.sh'])
 
 # ch = cluster_head(arr,vel,x,y)
