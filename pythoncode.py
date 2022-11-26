@@ -84,7 +84,6 @@ def cluster_head(arr,vel,x,y):
 
 	return clusterheads
 
-
 def cluster_head2(arr,vel,x,y):
 	# MSSP
 	n = len(vel)
@@ -153,8 +152,6 @@ def cluster_head2(arr,vel,x,y):
 
 	return clusterheads
 
-
-# Modified K-Means Algorithm
 # Modified K-Means Algorithm
 def kmeans(arr,vel,x,y,C):
 	n = len(vel)
@@ -170,8 +167,6 @@ def kmeans(arr,vel,x,y,C):
 	final = {C[k]:[] for k in range(0,m)}
 
 	# Finding mean, std.deviation and variance
-	
-	
 	if len(vel) > 1:
 		variance = stat.variance(vel)
 		stand = stat.stdev(vel)
